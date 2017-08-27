@@ -934,8 +934,8 @@ class StateObjectHandler {
                 pw.println("package " + so.packageName + ";");
 
                 pw.println("import " + so.userType + ";");
-
-                pw.println("public class " + so.type + "_B1 extends " + so.userType + " {");
+                pw.println("import javax.annotation.Generated;");
+                pw.println("@Generated(\"org.openjdk.jmh.generators.core.BenchmarkGenerator\") public class " + so.type + "_B1 extends " + so.userType + " {");
                 Paddings.padding(pw);
                 pw.println("}");
 
@@ -948,8 +948,8 @@ class StateObjectHandler {
                 pw.println("package " + so.packageName + ";");
 
                 pw.println("import " + AtomicIntegerFieldUpdater.class.getCanonicalName() + ";");
-
-                pw.println("public class " + so.type + "_B2 extends " + so.type + "_B1 {");
+                pw.println("import javax.annotation.Generated;");
+                pw.println("@Generated(\"org.openjdk.jmh.generators.core.BenchmarkGenerator\") public class " + so.type + "_B2 extends " + so.type + "_B1 {");
 
                 for (Level level : Level.values()) {
                     pw.println("    public volatile int setup" + level + "Mutex;");
@@ -984,7 +984,8 @@ class StateObjectHandler {
                 PrintWriter pw = new PrintWriter(dst.newClass(so.packageName + "." + so.type + "_B3"));
 
                 pw.println("package " + so.packageName + ";");
-                pw.println("public class " + so.type + "_B3 extends " + so.type + "_B2 {");
+                pw.println("import javax.annotation.Generated;");
+                pw.println("@Generated(\"org.openjdk.jmh.generators.core.BenchmarkGenerator\") public class " + so.type + "_B3 extends " + so.type + "_B2 {");
                 Paddings.padding(pw);
                 pw.println("}");
                 pw.println("");
@@ -996,7 +997,8 @@ class StateObjectHandler {
                 PrintWriter pw = new PrintWriter(dst.newClass(so.packageName + "." + so.type));
 
                 pw.println("package " + so.packageName + ";");
-                pw.println("public class " + so.type + " extends " + so.type + "_B3 {");
+                pw.println("import javax.annotation.Generated;");
+                pw.println("@Generated(\"org.openjdk.jmh.generators.core.BenchmarkGenerator\") public class " + so.type + " extends " + so.type + "_B3 {");
                 pw.println("}");
                 pw.println("");
 
